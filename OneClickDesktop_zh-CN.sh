@@ -1,60 +1,60 @@
 #!/bin/bash
 ###########################################################################################
-#    One-click Desktop & Browser Access Setup Script v0.2.0                               #
+#一次性点击桌面和浏览器访问设置脚本V0.2#
 #    Written by shc (https://qing.su)                                                     #
-#    Github link: https://github.com/Har-Kuun/OneClickDesktop                             #
-#    Contact me: https://t.me/hsun94   E-mail: hi@qing.su                                 #
+#吉特布链接:httPS://gihub.com/Har-Kuun/奥尼克桌面#
+#联系我:HTPS://T.我/HSSOM94电子邮件:嗨@清光。
 #                                                                                         #
-#    This script is distributed in the hope that it will be                               #
-#    useful, but ABSOLUTELY WITHOUT ANY WARRANTY.                                         #
+#这个脚本发布是希望它是#
+#有用,但绝对没有任何保证。#
 #                                                                                         #
-#    The author thanks LinuxBabe for providing detailed                                   #
-#    instructions on Guacamole setup.                                                     #
+#作者感谢林纽克斯贝比提供详细资料#
+#有关鳄梨酱设置的说明书。#
 #    https://www.linuxbabe.com/debian/apache-guacamole-remote-desktop-debian-10-buster    #
 #                                                                                         #
-#    Thank you for using this script.                                                     #
+#谢谢你使用这个脚本。#
 ###########################################################################################
 
 
 #您可以在这里修改Guacamole源码下载链接。
 #访问https://guacamole.apache.org/releases/获取最新源码。
 
-GUACAMOLE_DOWNLOAD_LINK="https://apache.org/dyn/closer.lua/guacamole/1.5.4/source/guacamole-server-1.5.4.tar.gz"
-GUACAMOLE_VERSION="1.5.4"
+ GUACAMOLE_DOWNLOAD_LINK = "https://archive.apache.org/dist/guacamole/1.2.0/source/guacamole-server-1.2.0.tar.gz"
+ 鳄梨油_版本 = "1.2.0"
 
 #此脚本仅支持Ubuntu 18/20, Debian 10, 以及CentOS 7/8.
 #如果您试图再其他版本的操作系统中安装，可以在下面禁用OS检查开关。
 #请注意，在其他操作系统上安装此脚本可能会导致不可预料的错误。  请在安装前做好备份。
 
-OS_CHECK_ENABLED=ON
+使具有 =在…上
 
 
 
 
 #########################################################################
-#    Functions start here.                                              #
-#    Do not change anything below unless you know what you are doing.   #
+#功能从这里开始。#
+#不要改变下面的任何东西,除非你知道你在做什么。#
 #########################################################################
 
-exec > >(tee -i OneClickDesktop.log)
-exec 2>&1
+ 执行和联络处; -我 工作台记录
+ 执行委员会 2 >&1
 
-function check_OS
+功能 检查员
 {
-	if [ -f /etc/lsb-release ] ; then
-		cat /etc/lsb-release | grep "DISTRIB_RELEASE=18." >/dev/null
-		if [ $? = 0 ] ; then
-			OS=UBUNTU18
-		else
-			cat /etc/lsb-release | grep "DISTRIB_RELEASE=20." >/dev/null
-			if [ $? = 0 ] ; then
-				OS=UBUNTU20
-			else
-				say "很抱歉，此脚本仅支持Ubuntu 18/20, Debian 10, 以及CentOS 7/8操作系统。" red
-				echo 
-				exit 1
-			fi
-		fi
+	 如果 [ -F /etc/lsb-release ] ; 然后
+		猫/猫等/lsb-释放|GREP "DISTRIB_RELEASE=18." &长/发展/空
+		 如果 [ $? = 0 ] ; 然后
+			 O =乌本图18
+		其他的
+			猫/猫等/lsb-释放|GREP "DISTRIB_RELEASE=20." &长/发展/空
+			 如果 [ $? = 0 ] ; 然后
+				 O =乌本图20
+			其他的
+				说 "很抱歉，此脚本仅支持Ubuntu 18/20, Debian 10, 以及CentOS 7/8操作系统。" 红色的
+				回声
+				 出口   1
+			菲
+		菲
 	elif [ -f /etc/debian_version ] ; then
 		cat /etc/debian_version | grep "^10." >/dev/null
 		if [ $? = 0 ] ; then
